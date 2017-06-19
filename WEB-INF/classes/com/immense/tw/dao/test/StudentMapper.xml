@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace属性是名称空间，必须唯一 -->
+<mapper namespace="com.immense.tw.dao.test.StudentDao">  <!-- namespace:建议使用类的全路径  -->
+
+	<!-- 
+		resultMap:映射实体与表
+		type:表示实体的全路径名
+		id属性：为实体与表的映射取一个任意唯一的编号
+	 -->
+	<resultMap type="com.immense.tw.dao.test.Student" id="studentMap">
+		<id property="id" column="id" />
+		<result property="name" column="username" />
+		<result property="password" column="password" />
+	</resultMap>
+	
+	
+	<select id="testselect" resultMap="studentMap">
+		select id,username,password from test_tb
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.immense.tw.dao.AinvestmentDao">  
+
+	<select id="getAllInves" resultMap="invesMapper">
+		select a.id,a.inversid,a.deadline,a.money,a.interestrate,a.transfer,a.istranfer,b.typename,b.typenickname
+		from ainvestment a left join atype b
+		on a.atype=b.id
+	</select>
+	
+	<!-- 首页显示 6行数据 -->
+	<select id="get6Inves" resultMap="invesMapper">
+		select  top 6 a.id,a.inversid,a.deadline,a.money,a.interestrate,a.transfer,a.istranfer,b.typename,b.typenickname
+		from ainvestment a left join atype b
+		on a.atype=b.id  order by a.id desc
+	</select>
+	
+	<!-- 根据投资类型查询投资项目 -->
+	<select id="findInvesBytype" resultMap="invesMapper" parameterType="java.lang.String">
+		select a.id,a.inversid,a.deadline,a.money,a.interestrate,a.transfer,a.istranfer,b.typename,b.typenickname
+		from atype b,ainvestment a
+		where a.atype=b.id and b.typenickname=#{type}
+	</select>
+
+	<!-- 根据invesid查询 -->
+	<select id="findByInvesid" resultMap="invesMapper" parameterType="java.lang.String">
+		select  a.id,a.inversid,a.deadline,a.money,a.interestrate,a.transfer,a.istranfer,a.income,b.typename
+		from ainvestment a ,atype b
+		where a.atype=b.id and a.inversid=#{invesid}
+	</select>
+
+	<resultMap type="com.immense.tw.entity.Ainvestment" id="invesMapper">
+		<id property="id" column="id" />
+		<result property="inversid" column="inversid" />
+		<result property="deadline" column="deadline"/>
+		<result property="money" column="money"/>
+		<result property="interestrate" column="interestrate"/>
+		<result property="transfer" column="transfer"/>
+		<result property="istranfer" column="istranfer"/>
+		<result property="income" column="income"/>
+		<association property="atype" resultMap="com.immense.tw.dao.AtypeDao.typeMapper"></association>
+	</resultMap>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
