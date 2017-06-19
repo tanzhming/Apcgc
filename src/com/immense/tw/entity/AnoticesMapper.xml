@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.immense.tw.dao.AnoticesDao">  
+
+	<select id="get1notices" resultMap="noticesMapper">
+		select top 1 id,noticestitle,noticesdate from anotices order by noticesdate desc
+	</select>
+	
+	<select id="getAllnotices" resultMap="noticesMapper">
+		select id,noticesid,noticestitle,noticescontent,noticesfrom,noticesdate from anotices
+	</select>
+	
+	<select id="findnoticesByid" resultMap="noticesMapper" parameterType="java.lang.Integer">
+		select id,noticesid,noticestitle,noticescontent,noticesfrom,noticesdate from anotices where id=#{id}
+	</select>
+	
+
+	<resultMap type="com.immense.tw.entity.Anotices" id="noticesMapper">
+		<id property="id" column="id" />
+		<result property="noticesid" column="noticesid" />
+		<result property="noticestitle" column="noticestitle"/>
+		<result property="noticescontent" column="noticescontent"/>
+		<result property="noticesfrom" column="noticesfrom"/>
+		<result property="noticesdate" column="noticesdate"/>
+	</resultMap>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

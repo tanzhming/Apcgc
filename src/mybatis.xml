@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 加载映射文件 -->
+	<mappers>
+		<mapper resource="com/immense/tw/dao/test/StudentMapper.xml"/>  <!-- 测试文件 -->
+		<mapper resource="com/immense/tw/entity/AtypeMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AinvestmentMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AnoticesMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AnewsMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AindustryNewsMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AaccountMapper.xml"/>
+		<mapper resource="com/immense/tw/entity/AautomaticBidMapper.xml"/>
+	</mappers>
+	
+</configuration>

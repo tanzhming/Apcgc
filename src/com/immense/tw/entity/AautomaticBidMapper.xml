@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 自动投标设置 -->
+<mapper namespace="com.immense.tw.dao.AautomaticBidDao">  
+	
+	<!-- 查询该用户是否设置自动投标 -->
+	<select id="findByid" resultMap="automaticBidMapper" parameterType="java.lang.Integer">
+		select a.id,b.username,a.singlemoney,a.reservedmoney,a.notmoneyisinvest,a.income,
+			a.borrowperiod,a.projecttype,a.repayment,a.isopen
+		from automaticbid a , account b
+		where a.account=b.id and account=#{accountid}
+	</select>
+	
+	<!-- 设置自动自动投标（增加一条数据） -->
+	<insert id="add1data" parameterType="com.immense.tw.entity.AautomaticBid">
+		insert into automaticbid(account,singlemoney,reservedmoney,income,borrowperiod,projecttype,repayment)
+		values(#{account.id},#{singlemoney},#{reservedmoney},#{income},#{borrowperiod},#{projecttype},#{repayment})
+	</insert>
+	
+	<!-- 修改是否自动投标 -->
+	<update id="updateIsopen" parameterType="java.util.Map">
+		update automaticbid set isopen=#{isopen} where account=#{accountID}
+	</update>
+	
+	<!-- 删除一条数据 -->
+	<delete id="delete1data" parameterType="java.lang.Integer">
+		delete from automaticbid where id=#{id}
+	</delete>
+
+	<resultMap type="com.immense.tw.entity.AautomaticBid" id="automaticBidMapper">
+		<id property="id" column="id" />
+		<result property="singlemoney" column="singlemoney" />
+		<result property="reservedmoney" column="reservedmoney"/>
+		<result property="notmoneyisinvest" column="notmoneyisinvest"/>
+		<result property="income" column="income"/>
+		<result property="borrowperiod" column="borrowperiod"/>
+		<result property="projecttype" column="projecttype"/>
+		<result property="repayment" column="repayment"/>
+		<result property="isopen" column="isopen"/>
+		<association property="account" resultMap="com.immense.tw.dao.AaccountDao.accountMapper"></association>
+	</resultMap>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<properties resource="jdbc.properties" />
+	<environments default="sqlserver">
+		<environment id="sqlserver">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc_driver}"/>	
+				<property name="url" value="${jdbc_url}"/>	
+				<property name="username" value="${jdbc_username}"/>	
+				<property name="password" value="${jdbc_password}"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- 加载映射文件 -->
+	<mappers>
+		<mapper resource="com/immense/tw/dao/test/StudentMapper.xml"/>
+	</mappers>
+	
+</configuration>
